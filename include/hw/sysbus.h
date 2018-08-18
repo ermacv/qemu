@@ -95,6 +95,7 @@ void sysbus_mmio_map_overlap(SysBusDevice *dev, int n, hwaddr addr,
 void sysbus_add_io(SysBusDevice *dev, hwaddr addr,
                    MemoryRegion *mem);
 MemoryRegion *sysbus_address_space(SysBusDevice *dev);
+SysBusDevice *sysbus_create_child_obj(Object *parent, const char *childname, const char *childtype);
 
 /**
  * sysbus_init_child_obj:
