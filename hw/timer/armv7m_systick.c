@@ -31,6 +31,14 @@ int system_clock_scale;
 static inline int64_t systick_scale(SysTickState *s)
 {
     if (s->control & SYSTICK_CLKSOURCE) {
+        if(system_clock_scale == 0){
+            static bool warned = false;
+            if(!warned) {
+                fprintf(stderr, "armv7m systick: WARNING: system_clock_scale is zero - returning 1\n");
+                warned = true;
+            }
+            return 1;
+        }
         return system_clock_scale;
     } else {
         return 1000;
